@@ -13,5 +13,6 @@
   <packaging>pom</packaging>
   <modules>
     <module>pme-ce</module>
+    <module>pme-ce-no-osgi</module>
   </modules>
 </project>

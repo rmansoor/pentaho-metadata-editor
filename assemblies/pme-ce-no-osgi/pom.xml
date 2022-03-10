@@ -8,36 +8,19 @@
     <version>9.3.0.0-SNAPSHOT</version>
   </parent>
   <groupId>pentaho</groupId>
-  <artifactId>pme-ce</artifactId>
+  <artifactId>pme-ce-no-osgi</artifactId>
   <version>9.3.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <properties>
     <hsqldb.version>2.3.2</hsqldb.version>
     <org.eclipse.swt.gtk.linux.version>4.3.2</org.eclipse.swt.gtk.linux.version>
-
-    <big-data-plugin.version>9.3.0.0-SNAPSHOT</big-data-plugin.version>
     <pentaho-cassandra-plugin.version>9.3.0.0-SNAPSHOT</pentaho-cassandra-plugin.version>
     <pdi-dataservice-client-plugin.version>9.3.0.0-SNAPSHOT</pdi-dataservice-client-plugin.version>
     <pentaho-metadata.version>9.3.0.0-SNAPSHOT</pentaho-metadata.version>
     <pentaho-launcher.version>9.3.0.0-SNAPSHOT</pentaho-launcher.version>
     <oss-licenses.version>9.3.0.0-SNAPSHOT</oss-licenses.version>
-
-    <pentaho-hadoop-shims.version>9.3.0.0-SNAPSHOT</pentaho-hadoop-shims.version>
   </properties>
   <dependencies>
-    <dependency>
-      <groupId>org.pentaho</groupId>
-      <artifactId>shim-api-core</artifactId>
-      <version>${pentaho-hadoop-shims.version}</version>
-      <type>jar</type>
-      <scope>runtime</scope>
-      <exclusions>
-        <exclusion>
-          <artifactId>*</artifactId>
-          <groupId>*</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>
     <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
@@ -55,19 +38,6 @@
       <artifactId>hsqldb</artifactId>
       <version>${hsqldb.version}</version>
       <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>pentaho</groupId>
-      <artifactId>pentaho-big-data-plugin</artifactId>
-      <version>${big-data-plugin.version}</version>
-      <type>zip</type>
-      <scope>runtime</scope>
-      <exclusions>
-        <exclusion>
-          <groupId>*</groupId>
-          <artifactId>*</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.pentaho</groupId>
@@ -99,6 +69,12 @@
       <artifactId>pentaho-metadata-editor</artifactId>
       <version>${pentaho-metadata.version}</version>
       <scope>runtime</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>*</groupId>
+          <artifactId>*</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>pentaho</groupId>
@@ -131,100 +107,8 @@
       <version>${log4j.version}</version>
       <scope>runtime</scope>
     </dependency>
-    <dependency>
-      <groupId>org.hitachivantara.karaf.assemblies</groupId>
-      <artifactId>pme</artifactId>
-      <version>${pentaho-karaf.version}</version>
-      <type>zip</type>
-      <exclusions>
-        <exclusion>
-          <groupId>*</groupId>
-          <artifactId>*</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.karaf</groupId>
-      <artifactId>org.apache.karaf.main</artifactId>
-      <exclusions>
-        <exclusion>
-          <groupId>*</groupId>
-          <artifactId>*</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.karaf</groupId>
-      <artifactId>org.apache.karaf.util</artifactId>
-      <exclusions>
-        <exclusion>
-          <groupId>*</groupId>
-          <artifactId>*</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.karaf.jaas</groupId>
-      <artifactId>org.apache.karaf.jaas.boot</artifactId>
-      <exclusions>
-        <exclusion>
-          <groupId>*</groupId>
-          <artifactId>*</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.karaf.diagnostic</groupId>
-      <artifactId>org.apache.karaf.diagnostic.boot</artifactId>
-      <exclusions>
-        <exclusion>
-          <groupId>*</groupId>
-          <artifactId>*</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>com.tinkerpop.blueprints</groupId>
-      <artifactId>blueprints-core</artifactId>
-      <version>${blueprints-core.version}</version>
-      <exclusions>
-        <exclusion>
-          <groupId>*</groupId>
-          <artifactId>*</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>pentaho</groupId>
-      <artifactId>pdi-osgi-bridge-core</artifactId>
-      <version>${pdi-osgi-bridge.version}</version>
-      <exclusions>
-        <exclusion>
-          <groupId>*</groupId>
-          <artifactId>*</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>pentaho</groupId>
-      <artifactId>pentaho-capability-manager</artifactId>
-      <version>${pentaho-osgi-bundles.version}</version>
-      <exclusions>
-        <exclusion>
-          <groupId>*</groupId>
-          <artifactId>*</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
 
-    <!-- OSGi Dependencies -->
-    <!-- Because of: -->
-    <!-- pdi-osgi-bridge-core (KarafLifecycleListener and OSGIPluginRegistryExtension) -->
-    <dependency>
-       <groupId>org.osgi</groupId>
-       <artifactId>org.osgi.core</artifactId>
-       <scope>runtime</scope>
-    </dependency>
+
     <dependency>
       <groupId>commons-lang</groupId>
       <artifactId>commons-lang</artifactId>
@@ -367,11 +251,23 @@
       <groupId>pentaho-kettle</groupId>
       <artifactId>kettle-engine</artifactId>
       <version>${pdi.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>*</groupId>
+          <artifactId>*</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>pentaho-kettle</groupId>
       <artifactId>kettle-core</artifactId>
       <version>${pdi.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>*</groupId>
+          <artifactId>*</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>pentaho-kettle</groupId>
@@ -662,24 +558,6 @@
         <artifactId>maven-dependency-plugin</artifactId>
         <executions>
           <execution>
-            <id>unpack-karaf-assembly</id>
-            <phase>prepare-package</phase>
-            <goals>
-              <goal>unpack</goal>
-            </goals>
-            <configuration>
-              <artifactItems>
-                <artifactItem>
-                  <groupId>org.hitachivantara.karaf.assemblies</groupId>
-                  <artifactId>pme</artifactId>
-                  <version>${pentaho-karaf.version}</version>
-                  <type>zip</type>
-                  <outputDirectory>${project.build.directory}/karaf</outputDirectory>
-                </artifactItem>
-              </artifactItems>
-            </configuration>
-          </execution>
-          <execution>
             <id>copy-launcher</id>
             <phase>prepare-package</phase>
             <goals>
@@ -803,13 +681,6 @@
             </goals>
             <configuration>
               <artifactItems>
-                <artifactItem>
-                  <groupId>pentaho</groupId>
-                  <artifactId>pentaho-big-data-plugin</artifactId>
-                  <version>${big-data-plugin.version}</version>
-                  <outputDirectory>${project.build.directory}/plugins</outputDirectory>
-                  <type>zip</type>
-                </artifactItem>
                 <artifactItem>
                   <groupId>org.pentaho</groupId>
                   <artifactId>pentaho-cassandra-plugin-package</artifactId>
